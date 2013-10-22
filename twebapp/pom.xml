@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>web4teachers</artifactId>
+        <groupId>org.web4teachers</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>twebapp</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.web4teachers</groupId>
+            <artifactId>tjoblet</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.web4thejob</groupId>
+            <artifactId>org.web4thejob.core</artifactId>
+            <version>${org.web4thejob.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.web4thejob</groupId>
+            <artifactId>org.web4thejob.orm.h4</artifactId>
+            <version>${org.web4thejob.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.web4thejob</groupId>
+            <artifactId>org.web4thejob.web.zk6</artifactId>
+            <version>${org.web4thejob.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.web4thejob</groupId>
+            <artifactId>org.web4thejob.security.ss3</artifactId>
+            <version>${org.web4thejob.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.21</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
+                <configuration>
+                    <useTestClasspath>false</useTestClasspath>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8080</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <stopKey>my-stop-key</stopKey>
+                    <stopPort>8181</stopPort>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
