@@ -29,7 +29,7 @@ public class DocumentServlet extends HttpServlet {
         if (paramId == null || paramId.length() == 0) {
             return;
         }
-        long id = 0;
+        long id;
         try {
             id = Long.valueOf(paramId);
         } catch (NumberFormatException e) {
