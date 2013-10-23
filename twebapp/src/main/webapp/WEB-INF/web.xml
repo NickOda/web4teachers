@@ -94,6 +94,12 @@
         <servlet-class>org.zkoss.zk.au.http.DHtmlUpdateServlet</servlet-class>
     </servlet>
 
+
+    <servlet>
+        <servlet-name>docsService</servlet-name>
+        <servlet-class>org.web4thejob.servlet.DocumentServlet</servlet-class>
+    </servlet>
+
     <!-- Map all *.zul, *.zhtml to ZK loader -->
     <servlet-mapping>
         <servlet-name>zkLoader</servlet-name>
@@ -108,6 +114,11 @@
     <servlet-mapping>
         <servlet-name>auEngine</servlet-name>
         <url-pattern>/zkau/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>docsService</servlet-name>
+        <url-pattern>/doc/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
