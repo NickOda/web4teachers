@@ -49,7 +49,16 @@ public class DocumentServlet extends HttpServlet {
         ServletContextResource template = (ServletContextResource) ContextUtil.getResource("math/math.html");
         PrintWriter out = response.getWriter();
         for (String line : Files.readAllLines(template.getFile().toPath(), Charsets.UTF_8)) {
-            if (line.contains("${body}")) {
+            if (line.contains("${basref}")) {
+                StringBuilder sb = new StringBuilder();
+                sb.append("http://");
+                sb.append(request.getServerName());
+                sb.append(":");
+                sb.append(request.getServerPort());
+                sb.append(request.getContextPath());
+                sb.append("/");
+                line = line.replace("${basref}", sb.toString());
+            } else if (line.contains("${body}")) {
                 line = line.replace("${body}", doc.getBody());
             }
             out.println(line);
