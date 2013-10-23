@@ -33,7 +33,10 @@ public class Document extends AbstractHibernateEntity {
     public static final String FLD_CODE = "code";
     public static final String FLD_BODY = "body";
 
+
     private long id;
+    @SuppressWarnings("unused")
+    private int version;
     @NotBlank
     private String code;
     @NotBlank

@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.web4thejob.tjoblet.orm.Document" schema="web4t" table="`DOCUMENT`">
+    <class name="org.web4thejob.tjoblet.orm.Document" schema="web4t" table="`DOCUMENT`" optimistic-lock="version">
         <meta attribute="friendlyName">Document</meta>
 
         <id name="id" type="long">
@@ -21,6 +21,8 @@
                 <column name="`CODE`" length="255" not-null="true"/>
             </property>
         </natural-id>
+
+        <version name="version" access="field" type="integer" column="`VERSION`"/>
 
         <property name="body" type="materialized_clob">
             <meta attribute="friendlyName">Body</meta>
