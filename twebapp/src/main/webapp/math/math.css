@@ -1,0 +1,28 @@
+html {
+	width: 100%;
+	margin: 0px;
+	padding:0px;	
+	color: #333;
+}
+body {
+	font: normal 110%/1.4 Arial,sans-serif;
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding:0px;
+}
+
+#header {
+	display: block;
+	height: 50px;
+	margin:0px;
+	padding:0px;
+	background-color: #78b428;
+	padding-left: 10px;
+	color: white;
+}
+
+#content {
+	display: block;
+	margin:10px;
+}
+
