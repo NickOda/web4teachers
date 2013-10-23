@@ -27,6 +27,11 @@
             <artifactId>org.web4thejob.orm.h4</artifactId>
             <version>${org.web4thejob.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.web4thejob</groupId>
+            <artifactId>org.web4thejob.web.zk6</artifactId>
+            <version>${org.web4thejob.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
