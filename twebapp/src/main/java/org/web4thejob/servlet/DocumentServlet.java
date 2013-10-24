@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.Date;
 
@@ -19,50 +21,72 @@ import java.util.Date;
  * @since 1.0.0
  */
 public class DocumentServlet extends HttpServlet {
+    private URL baseRef;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // read parameter
-        String paramId = request.getParameter("id");
-        if (paramId == null || paramId.length() == 0) {
+        long docId = getDocId(request);
+        if (docId <= 0) {
             return;
         }
-        long id;
-        try {
-            id = Long.valueOf(paramId);
-        } catch (NumberFormatException e) {
-            return;
-        }
-        if (id <= 0) {
-            return;
+        String templId = getTemplId(request);
+        if (templId == null) {
+            templId = "plain";
         }
 
-
-        Document doc = ContextUtil.getDRS().findById(Document.class, id);
+        Document doc = ContextUtil.getDRS().findById(Document.class, docId);
         if (doc == null) {
             return;
         }
 
+        if (baseRef == null) {
+            baseRef = getBaseURL(request);
+        }
+
         response.setContentType("text/html; charset=utf-8");
-        ServletContextResource template = (ServletContextResource) ContextUtil.getResource("math/math.html");
+        ServletContextResource template = (ServletContextResource) ContextUtil.getResource("templ/" + templId + "" +
+                ".html");
         PrintWriter out = response.getWriter();
         for (String line : Files.readAllLines(template.getFile().toPath(), Charsets.UTF_8)) {
             if (line.contains("${basref}")) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("http://");
-                sb.append(request.getServerName());
-                sb.append(":");
-                sb.append(request.getServerPort());
-                sb.append(request.getContextPath());
-                sb.append("/");
-                line = line.replace("${basref}", sb.toString());
+                line = line.replace("${basref}", baseRef.toString());
             } else if (line.contains("${body}")) {
                 line = line.replace("${body}", doc.getBody());
+            } else if (line.contains("${title}")) {
+                line = line.replace("${title}", doc.getCode());
             }
             out.println(line);
         }
+
+    }
+
+    private URL getBaseURL(HttpServletRequest request) throws MalformedURLException {
+        return new URL("http", request.getServerName(), request.getServerPort(), request.getContextPath() + "/");
+    }
+
+    private long getDocId(HttpServletRequest request) {
+        String paramId = request.getParameter("id");
+        if (paramId == null || paramId.length() == 0) {
+            return -1;
+        }
+
+        try {
+            return Long.valueOf(paramId);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    private String getTemplId(HttpServletRequest request) {
+        String paramId = request.getParameter("templ");
+        if (paramId == null
+                || paramId.trim().length() == 0
+                || !ContextUtil.resourceExists("templ/" + paramId + ".html")) {
+            return null;
+        }
+        return paramId.trim();
     }
 
     @Override

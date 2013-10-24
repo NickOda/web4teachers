@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr" style="height: 100%">
 <head>
     <meta charset="utf-8">
     <base href="${basref}"/>
-    <link rel="stylesheet" type="text/css" href="math/math.css"/>
+    <title>${title}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
         tex2jax: { inlineMath: [['\\(','\\)']] }
@@ -13,13 +15,6 @@
             src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 </head>
 <body>
-<div id="header">
-    <div style="padding-top:15px;">Your logo here..</div>
-</div>
-
-<div id="content">
-    <h2>Hello</h2>
-    ${body}
-</div>
+${body}
 </body>
 </html>
