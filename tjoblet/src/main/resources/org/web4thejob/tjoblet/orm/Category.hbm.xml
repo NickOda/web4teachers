@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.web4thejob.tjoblet.orm.Category" schema="web4t" table="`CATEGORY`" optimistic-lock="version">
+        <meta attribute="friendlyName">Category</meta>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="index">1</meta>
+            <column name="`ID`"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="true">
+            <property name="name" type="string">
+                <meta attribute="friendlyName">Name</meta>
+                <meta attribute="index">2</meta>
+                <column name="`NAME`" length="255" not-null="true"/>
+            </property>
+        </natural-id>
+
+        <version name="version" access="field" type="integer" column="`VERSION`"/>
+
+        <set name="documents" table="`DOCUMENT`" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Documents</meta>
+            <key>
+                <column name="`CATEGORY_ID`" not-null="false"/>
+            </key>
+            <one-to-many class="org.web4thejob.tjoblet.orm.Document"/>
+        </set>
+
+        <set name="parents" table="`CATEGORY_HIERARCHY`" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Parents</meta>
+            <key>
+                <column name="`CHILD_ID`" not-null="false"/>
+            </key>
+            <one-to-many class="org.web4thejob.tjoblet.orm.CategoryHierarchy"/>
+        </set>
+
+        <set name="children" table="`CATEGORY_HIERARCHY`" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Children</meta>
+            <key>
+                <column name="`PARENT_ID`" not-null="false"/>
+            </key>
+            <one-to-many class="org.web4thejob.tjoblet.orm.CategoryHierarchy"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

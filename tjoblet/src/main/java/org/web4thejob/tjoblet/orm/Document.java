@@ -40,6 +40,8 @@ public class Document extends AbstractHibernateEntity {
     @NotBlank
     private String code;
     @NotBlank
+    private Category category;
+    @NotBlank
     @HtmlHolder
     private String body;
 
@@ -65,6 +67,14 @@ public class Document extends AbstractHibernateEntity {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

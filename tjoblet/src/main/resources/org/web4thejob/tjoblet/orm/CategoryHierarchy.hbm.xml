@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.web4thejob.tjoblet.orm.CategoryHierarchy" schema="web4t" table="`CATEGORY_HIERARCHY`"
+           optimistic-lock="version">
+        <meta attribute="friendlyName">Category Hierarchy</meta>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="index">1</meta>
+            <column name="`ID`"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="true">
+            <many-to-one name="parent" class="org.web4thejob.tjoblet.orm.Category"
+                         fetch="select" not-null="true">
+                <meta attribute="friendlyName">Parent</meta>
+                <meta attribute="index">2</meta>
+                <column name="`PARENT_ID`" not-null="true"/>
+            </many-to-one>
+
+            <many-to-one name="child" class="org.web4thejob.tjoblet.orm.Category"
+                         fetch="select" not-null="true">
+                <meta attribute="friendlyName">Child</meta>
+                <meta attribute="index">3</meta>
+                <column name="`CHILD_ID`" not-null="true"/>
+            </many-to-one>
+
+        </natural-id>
+
+        <version name="version" access="field" type="integer" column="`VERSION`"/>
+
+        <property name="order" type="long">
+            <meta attribute="friendlyName">Order</meta>
+            <meta attribute="orderno">5</meta>
+            <column name="`ORDER`" not-null="true"/>
+        </property>
+
+
+    </class>
+</hibernate-mapping>
