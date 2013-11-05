@@ -34,10 +34,10 @@
 
         <version name="version" access="field" type="integer" column="`VERSION`"/>
 
-        <property name="order" type="long">
+        <property name="sorting" type="long">
             <meta attribute="friendlyName">Order</meta>
             <meta attribute="orderno">5</meta>
-            <column name="`ORDER`" not-null="true"/>
+            <column name="`SORTING`" not-null="true"/>
         </property>
 
 

@@ -22,11 +22,22 @@ public class MappingTest extends AbstractORMTest {
         category2.setName("C2");
         ContextUtil.getDWS().save(category2);
 
+        Category category3 = new Category();
+        category3.setName("C3");
+        ContextUtil.getDWS().save(category3);
+
         CategoryHierarchy hierarchy = new CategoryHierarchy();
         hierarchy.setParent(category1);
         hierarchy.setChild(category2);
-        hierarchy.setOrder(1);
+        hierarchy.setSorting(1);
         ContextUtil.getDWS().save(hierarchy);
+
+        hierarchy.setAsNew();
+        hierarchy.setParent(category1);
+        hierarchy.setChild(category3);
+        hierarchy.setSorting(2);
+        ContextUtil.getDWS().save(hierarchy);
+
 
         System.out.println();
     }

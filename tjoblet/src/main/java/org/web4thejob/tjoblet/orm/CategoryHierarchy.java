@@ -1,6 +1,10 @@
 package org.web4thejob.tjoblet.orm;
 
+import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.AbstractHibernateEntity;
+import org.web4thejob.orm.Path;
+import org.web4thejob.orm.query.Condition;
+import org.web4thejob.orm.query.Query;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -15,7 +19,7 @@ public class CategoryHierarchy extends AbstractHibernateEntity implements Entity
     private Category parent;
     @NotNull
     private Category child;
-    private long order;
+    private long sorting;
     @SuppressWarnings("unused")
     private int version;
 
@@ -48,13 +52,26 @@ public class CategoryHierarchy extends AbstractHibernateEntity implements Entity
     }
 
     @Override
-    public long getOrder() {
-        return order;
+    public long getSorting() {
+        return sorting;
     }
 
     @Override
-    public void setOrder(long order) {
-        this.order = order;
+    public void setSorting(long order) {
+        this.sorting = order;
+    }
+
+    @Override
+    public Query getRootItems() {
+        Query query = ContextUtil.getEntityFactory().buildQuery(Category.class);
+        query.addCriterion(new Path("parents"), Condition.NEX, null);
+        query.addOrderBy(new Path("name"));
+        return query;
+    }
+
+    @Override
+    public Class<Category> getItemsType() {
+        return Category.class;
     }
 
     @Override

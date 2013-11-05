@@ -86,4 +86,9 @@ public class Document extends AbstractHibernateEntity {
     public void setAsNew() {
         id = 0;
     }
+
+    @Override
+    public String toString() {
+        return code;
+    }
 }

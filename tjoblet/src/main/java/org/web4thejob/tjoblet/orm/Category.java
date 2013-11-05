@@ -5,21 +5,22 @@ import org.web4thejob.orm.AbstractHibernateEntity;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
  * @author Veniamin Isaias
  * @since 1.0.0
  */
-public class Category extends AbstractHibernateEntity {
+public class Category extends AbstractHibernateEntity implements EntityHierarchyItem {
     private long id;
     @NotBlank
     private String name;
     @SuppressWarnings("unused")
     private int version;
     private Set<Document> documents = new HashSet<Document>();
-    private Set<Category> parents = new HashSet<Category>();
-    private Set<Category> children = new HashSet<Category>();
+    private Set<CategoryHierarchy> parents = new HashSet<CategoryHierarchy>();
+    private Set<CategoryHierarchy> children = new LinkedHashSet<CategoryHierarchy>();
 
     public long getId() {
         return id;
@@ -60,19 +61,19 @@ public class Category extends AbstractHibernateEntity {
         return name;
     }
 
-    public Set<Category> getParents() {
+    public Set<CategoryHierarchy> getParents() {
         return parents;
     }
 
-    public void setParents(Set<Category> parents) {
+    public void setParents(Set<CategoryHierarchy> parents) {
         this.parents = parents;
     }
 
-    public Set<Category> getChildren() {
+    public Set<CategoryHierarchy> getChildren() {
         return children;
     }
 
-    public void setChildren(Set<Category> children) {
+    public void setChildren(Set<CategoryHierarchy> children) {
         this.children = children;
     }
 
