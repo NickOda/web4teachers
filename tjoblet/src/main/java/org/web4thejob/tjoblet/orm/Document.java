@@ -23,6 +23,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
 import org.web4thejob.orm.annotation.HtmlHolder;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -39,7 +40,7 @@ public class Document extends AbstractHibernateEntity {
     private int version;
     @NotBlank
     private String code;
-    @NotBlank
+    @NotNull
     private Category category;
     @NotBlank
     @HtmlHolder
