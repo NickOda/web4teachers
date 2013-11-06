@@ -12,7 +12,7 @@ import java.util.Set;
  * @author Veniamin Isaias
  * @since 1.0.0
  */
-public class Category extends AbstractHibernateEntity implements EntityHierarchyItem {
+public class Category extends AbstractHibernateEntity implements EntityHierarchyItem<CategoryHierarchy> {
     private long id;
     @NotBlank
     private String name;

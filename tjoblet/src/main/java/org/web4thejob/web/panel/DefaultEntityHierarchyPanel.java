@@ -40,6 +40,7 @@ import java.util.*;
  */
 @org.springframework.stereotype.Component
 @Scope("prototype")
+@SuppressWarnings({"unsafe", "unchecked"})
 public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel implements EntityHierarchyPanel,
         EventListener<Event> {
     public static final L10nString L10N_MSG_CANNOT_DELETE_PARENT = new L10nString(EntityHierarchyPanel.class,
@@ -57,6 +58,7 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
         tree.setVflex("true");
         tree.setWidth("100%");
         tree.addEventListener(Events.ON_SELECT, this);
+        tree.setZclass("z-dottree");
         new Treechildren().setParent(tree);
     }
 
@@ -113,7 +115,7 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
         }
     }
 
-    private void renderChildren(final Treeitem parent, final EntityHierarchyItem item) {
+    private void renderChildren(final Treeitem parent, final EntityHierarchyItem<EntityHierarchy> item) {
 
         ContextUtil.getTransactionWrapper().execute(new TransactionCallbackWithoutResult() {
             @Override
@@ -202,7 +204,7 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
                     new Treechildren().setParent(dropEvent.getTarget());
                 }
 
-                EntityHierarchy eh = (EntityHierarchy) dragged.getAttribute(ATTRIB_HIERARCHY);
+                EntityHierarchy<EntityHierarchyItem> eh = (EntityHierarchy) dragged.getAttribute(ATTRIB_HIERARCHY);
                 if (eh == null) {
                     eh = (EntityHierarchy) getTargetType().newInstance();
                 }
@@ -264,7 +266,7 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
                     tree.setSelectedItem(item);
                 } else if (ehi != null) {
                     if (item.getTreechildren() != null && item.getTreechildren().getItemCount() > 0) {
-                        displayMessage(L10N_MSG_CANNOT_DELETE_PARENT.toString(), false);
+                        ZkUtil.displayMessage(L10N_MSG_CANNOT_DELETE_PARENT.toString(), false, item);
                         return;
                     }
 
@@ -321,7 +323,7 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
                         toSave.add(child);
 
                         Treeitem item = tree.getSelectedItem();
-                        EntityHierarchy hierarchy = null;
+                        EntityHierarchy<EntityHierarchyItem> hierarchy = null;
                         if (item != null && item.getAttribute(ATTRIB_ITEM) instanceof EntityHierarchyItem) {
                             if (item.getTreechildren() == null) {
                                 new Treechildren().setParent(item);
@@ -346,6 +348,9 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
                         Treeitem newItem = new Treeitem();
                         newItem.setLabel(child.toRichString());
                         newItem.setAttribute(ATTRIB_ITEM, child);
+                        newItem.setDroppable("true");
+                        newItem.setDraggable("true");
+                        newItem.addEventListener(Events.ON_DROP, DefaultEntityHierarchyPanel.this);
 
                         if (hierarchy != null) {
                             newItem.setParent(item.getTreechildren());
