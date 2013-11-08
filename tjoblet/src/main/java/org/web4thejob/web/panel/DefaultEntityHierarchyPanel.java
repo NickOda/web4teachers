@@ -46,7 +46,6 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
     public static final L10nString L10N_MSG_CANNOT_DELETE_PARENT = new L10nString(EntityHierarchyPanel.class,
             "message_cannot_delete_parent", "This item cannot be deleted because it has child items. Remove child " +
             "items and retry.");
-
     private static final String ATTRIB_HIERARCHY = "ATTRIB_HIERARCHY";
     private static final String ATTRIB_ITEM = "ATTRIB_ITEM";
     private static final String ON_OPEN_ECHO = Events.ON_OPEN + "Echo";
@@ -138,7 +137,6 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
         });
 
     }
-
 
     @Override
     protected void arrangeForState(PanelState newState) {
@@ -313,11 +311,12 @@ public class DefaultEntityHierarchyPanel extends AbstractZkTargetTypeAwarePanel 
                         toSave.add(child);
 
                         Treeitem item = tree.getSelectedItem();
-                        EntityHierarchy hierarchy = getEntityHierarchyInstance();
+                        EntityHierarchy hierarchy = null;
                         if (item != null && item.getAttribute(ATTRIB_ITEM) instanceof EntityHierarchyItem) {
                             if (item.getTreechildren() == null) {
                                 new Treechildren().setParent(item);
                             }
+                            hierarchy = getEntityHierarchyInstance();
                             EntityHierarchyItem parent = (EntityHierarchyItem) item.getAttribute(ATTRIB_ITEM);
                             hierarchy.setParent(parent);
                             hierarchy.setChild(child);
