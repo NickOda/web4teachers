@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.web4thejob.tjoblet.orm.BinderItem" schema="web4t" table="`BINDER_ITEMS`">
+        <meta attribute="friendlyName">Binder Items</meta>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="index">1</meta>
+            <column name="`ID`"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="true">
+            <many-to-one name="binder" class="org.web4thejob.tjoblet.orm.Binder"
+                         fetch="select" not-null="true">
+                <meta attribute="friendlyName">Binder</meta>
+                <meta attribute="index">2</meta>
+                <column name="`BINDER_ID`" not-null="true"/>
+            </many-to-one>
+
+            <many-to-one name="document" class="org.web4thejob.tjoblet.orm.Document"
+                         fetch="select" not-null="true">
+                <meta attribute="friendlyName">Document</meta>
+                <meta attribute="index">3</meta>
+                <column name="`DOCUMENT_ID`" not-null="true"/>
+            </many-to-one>
+        </natural-id>
+
+        <property name="sorting" type="long">
+            <meta attribute="friendlyName">Order</meta>
+            <meta attribute="orderno">4</meta>
+            <column name="`SORTING`" not-null="true"/>
+        </property>
+
+
+    </class>
+</hibernate-mapping>

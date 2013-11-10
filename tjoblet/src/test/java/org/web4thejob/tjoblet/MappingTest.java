@@ -3,8 +3,7 @@ package org.web4thejob.tjoblet;
 import org.junit.Test;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.tjoblet.base.AbstractORMTest;
-import org.web4thejob.tjoblet.orm.Category;
-import org.web4thejob.tjoblet.orm.CategoryHierarchy;
+import org.web4thejob.tjoblet.orm.*;
 
 /**
  * @author Veniamin Isaias
@@ -38,8 +37,24 @@ public class MappingTest extends AbstractORMTest {
         hierarchy.setSorting(2);
         ContextUtil.getDWS().save(hierarchy);
 
+        Document doc = new Document();
+        doc.setName("lala");
+        doc.setCategory(category1);
+        doc.setBody("123");
+        ContextUtil.getDWS().save(doc);
 
-        System.out.println();
+        doc.setBody("ABC");
+        ContextUtil.getDWS().save(doc);
+
+        Binder binder = new Binder();
+        binder.setName("MyB");
+        ContextUtil.getDWS().save(binder);
+
+        BinderItem binderItem = new BinderItem();
+        binderItem.setBinder(binder);
+        binderItem.setDocument(doc);
+        ContextUtil.getDWS().save(binderItem);
+
     }
 
 }

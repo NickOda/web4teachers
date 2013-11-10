@@ -2,6 +2,7 @@ package org.web4thejob.tjoblet.orm;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
+import org.web4thejob.orm.EntityHierarchyItem;
 
 import java.io.Serializable;
 import java.util.HashSet;

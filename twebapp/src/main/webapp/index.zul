@@ -1,7 +1,6 @@
 <?page title="web4thejob.org" contentType="text/html;charset=UTF-8"?>
 <?link rel="shortcut icon" type="image/x-icon" href="favicon.ico"?>
 <?script content="zk.useStackup = 'auto/gecko';"?>
-<?script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"?>
 
 <zk>
     <style>

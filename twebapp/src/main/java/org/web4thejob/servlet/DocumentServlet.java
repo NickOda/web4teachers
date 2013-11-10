@@ -55,7 +55,7 @@ public class DocumentServlet extends HttpServlet {
             } else if (line.contains("${body}")) {
                 line = line.replace("${body}", doc.getBody());
             } else if (line.contains("${title}")) {
-                line = line.replace("${title}", doc.getCode());
+                line = line.replace("${title}", doc.getName());
             }
             out.println(line);
         }

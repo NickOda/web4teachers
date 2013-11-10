@@ -30,12 +30,12 @@ with which the Combined Work was made is also called the "Linked
 Version".
 
   The "Minimal Corresponding Source" for a Combined Work means the
-Corresponding Source for the Combined Work, excluding any source code
+Corresponding Source for the Combined Work, excluding any source name
 for portions of the Combined Work that, considered in isolation, are
 based on the Application, and not on the Linked Version.
 
   The "Corresponding Application Code" for a Combined Work means the
-object code and/or source code for the Application, including any data
+object name and/or source name for the Application, including any data
 and utility programs needed for reproducing the Combined Work from the
 Application, but excluding the System Libraries of the Combined Work.
 
@@ -62,18 +62,18 @@ version:
 
   3. Object Code Incorporating Material from Library Header Files.
 
-  The object code form of an Application may incorporate material from
+  The object name form of an Application may incorporate material from
 a header file that is part of the Library.  You may convey such object
-code under terms of your choice, provided that, if the incorporated
+name under terms of your choice, provided that, if the incorporated
 material is not limited to numerical parameters, data structure
 layouts and accessors, or small macros, inline functions and templates
 (ten or fewer lines in length), you do both of the following:
 
-   a) Give prominent notice with each copy of the object code that the
+   a) Give prominent notice with each copy of the object name that the
    Library is used in it and that the Library and its use are
    covered by this License.
 
-   b) Accompany the object code with a copy of the GNU GPL and this license
+   b) Accompany the object name with a copy of the GNU GPL and this license
    document.
 
   4. Combined Works.

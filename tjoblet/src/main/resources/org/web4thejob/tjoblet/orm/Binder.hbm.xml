@@ -4,8 +4,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.web4thejob.tjoblet.orm.Document" schema="web4t" table="`DOCUMENT`" optimistic-lock="version">
-        <meta attribute="friendlyName">Document</meta>
+    <class name="org.web4thejob.tjoblet.orm.Binder" schema="web4t" table="`BINDER`" optimistic-lock="version">
+        <meta attribute="friendlyName">Binder</meta>
 
         <id name="id" type="long">
             <meta attribute="friendlyName">ID</meta>
@@ -16,55 +16,42 @@
 
         <natural-id mutable="true">
             <property name="name" type="string">
-                <meta attribute="friendlyName">Title</meta>
+                <meta attribute="friendlyName">Name</meta>
                 <meta attribute="index">2</meta>
-                <column name="`CODE`" length="255" not-null="true"/>
+                <column name="`NAME`" length="255" not-null="true"/>
             </property>
         </natural-id>
 
         <version name="version" access="field" type="integer" column="`VERSION`"/>
 
-        <many-to-one name="category" class="org.web4thejob.tjoblet.orm.Category"
-                     fetch="select" not-null="true">
-            <meta attribute="friendlyName">Category</meta>
-            <meta attribute="index">3</meta>
-            <column name="`CATEGORY_ID`" not-null="true"/>
-        </many-to-one>
-
-        <property name="body" type="materialized_clob">
-            <meta attribute="friendlyName">Body</meta>
-            <meta attribute="index">4</meta>
-            <column name="`BODY`" length="5000000" not-null="true"/>
-        </property>
-
         <property name="bookDate" type="timestamp">
             <meta attribute="friendlyName">Book Date</meta>
-            <meta attribute="index">5</meta>
+            <meta attribute="index">3</meta>
             <column name="`BOOK_DATE`" not-null="true"/>
         </property>
 
         <property name="updateDate" type="timestamp">
             <meta attribute="friendlyName">Update Date</meta>
-            <meta attribute="index">6</meta>
+            <meta attribute="index">4</meta>
             <column name="`UPDATE_DATE`" not-null="false"/>
         </property>
 
         <many-to-one name="owner" class="org.web4thejob.security.UserIdentity"
                      fetch="select" not-null="true">
             <meta attribute="friendlyName">Owner</meta>
-            <meta attribute="index">7</meta>
+            <meta attribute="index">5</meta>
             <column name="`OWNER_ID`" not-null="true"/>
         </many-to-one>
 
-
-        <set name="binderItems" table="`BINDER_ITEMS`" inverse="true" lazy="true" fetch="select">
+        <set name="binderItems" table="`BINDER_ITEMS`" inverse="true" lazy="true" fetch="select" order-by="SORTING">
             <meta attribute="friendlyName">Items</meta>
-            <meta attribute="index">5</meta>
+            <meta attribute="index">6</meta>
             <key>
-                <column name="`DOCUMENT_ID`" not-null="false"/>
+                <column name="`BINDER_ID`" not-null="false"/>
             </key>
             <one-to-many class="org.web4thejob.tjoblet.orm.BinderItem"/>
         </set>
+
 
     </class>
 </hibernate-mapping>

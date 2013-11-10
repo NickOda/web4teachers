@@ -2,6 +2,7 @@ package org.web4thejob.tjoblet.orm;
 
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.AbstractHibernateEntity;
+import org.web4thejob.orm.EntityHierarchy;
 import org.web4thejob.orm.Path;
 import org.web4thejob.orm.query.Condition;
 import org.web4thejob.orm.query.Query;

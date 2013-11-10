@@ -21,30 +21,40 @@ package org.web4thejob.tjoblet.orm;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
-import org.web4thejob.orm.annotation.HtmlHolder;
+import org.web4thejob.orm.annotation.*;
+import org.web4thejob.security.UserIdentity;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Veniamin Isaias
  * @since 1.0.0
  */
 public class Document extends AbstractHibernateEntity {
-    public static final String FLD_CODE = "code";
+    public static final String FLD_CODE = "name";
     public static final String FLD_BODY = "body";
-
-
     private long id;
     @SuppressWarnings("unused")
     private int version;
     @NotBlank
-    private String code;
+    private String name;
     @NotNull
+    @EntityHierarchyHolder(hierarchyType = CategoryHierarchy.class)
     private Category category;
     @NotBlank
     @HtmlHolder
     private String body;
+    @InsertTimeHolder
+    private Date bookDate;
+    @UpdateTimeHolder
+    private Date updateDate;
+    @UserIdHolder
+    private UserIdentity owner;
+    private Set<BinderItem> binderItems = new HashSet<BinderItem>();
 
     public long getId() {
         return id;
@@ -54,12 +64,12 @@ public class Document extends AbstractHibernateEntity {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getName() {
+        return name;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBody() {
@@ -90,6 +100,40 @@ public class Document extends AbstractHibernateEntity {
 
     @Override
     public String toString() {
-        return code;
+        return name;
     }
+
+    public Set<BinderItem> getBinderItems() {
+        return binderItems;
+    }
+
+    public void setBinderItems(Set<BinderItem> binderItems) {
+        this.binderItems = binderItems;
+    }
+
+    public Date getBookDate() {
+        return bookDate;
+    }
+
+    public void setBookDate(Date bookDate) {
+        this.bookDate = bookDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public UserIdentity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserIdentity owner) {
+        this.owner = owner;
+    }
+
+
 }
