@@ -24,15 +24,19 @@
 
         <version name="version" access="field" type="integer" column="`VERSION`"/>
 
-        <property name="bookDate" type="timestamp">
+        <property name="bookDate" type="timestamp" update="false">
             <meta attribute="friendlyName">Book Date</meta>
             <meta attribute="index">3</meta>
+            <meta attribute="disable-user-insert">true</meta>
+            <meta attribute="disable-user-update">true</meta>
             <column name="`BOOK_DATE`" not-null="true"/>
         </property>
 
-        <property name="updateDate" type="timestamp">
+        <property name="updateDate" type="timestamp" insert="false">
             <meta attribute="friendlyName">Update Date</meta>
             <meta attribute="index">4</meta>
+            <meta attribute="disable-user-insert">true</meta>
+            <meta attribute="disable-user-update">true</meta>
             <column name="`UPDATE_DATE`" not-null="false"/>
         </property>
 

@@ -54,4 +54,9 @@ public class BinderItem extends AbstractHibernateEntity {
     public void setSorting(long sorting) {
         this.sorting = sorting;
     }
+
+    @Override
+    public String toString() {
+        return "Binder Item: " + id;
+    }
 }

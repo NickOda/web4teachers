@@ -29,4 +29,11 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     protected boolean isBound() {
         return hasTargetType() && StringUtils.hasText(getSettingValue(SettingEnum.TARGET_URL, ""));
     }
+
+
+    @Override
+    protected boolean processEntityDeselection(Entity entity) {
+        iframe.setSrc("templ/blank.html");
+        return true;
+    }
 }
