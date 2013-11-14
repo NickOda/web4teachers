@@ -18,7 +18,7 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     protected void arrangeForTargetEntity(Entity targetEntity) {
         this.targetEntity = targetEntity;
         if (this.targetEntity == null) {
-            iframe.setSrc(null);
+            iframe.setSrc("templ/blank.html");
         } else if (isBound()) {
             iframe.setSrc(getSettingValue(SettingEnum.TARGET_URL, "")); //force refresh
             iframe.setSrc(getSettingValue(SettingEnum.TARGET_URL, "") + targetEntity.getIdentifierValue().toString());
@@ -31,9 +31,4 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     }
 
 
-    @Override
-    protected boolean processEntityDeselection(Entity entity) {
-        iframe.setSrc("templ/blank.html");
-        return true;
-    }
 }
