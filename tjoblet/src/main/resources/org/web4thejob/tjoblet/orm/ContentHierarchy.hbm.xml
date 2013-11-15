@@ -4,8 +4,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.web4thejob.tjoblet.orm.BinderItem" schema="web4t" table="`BINDER_ITEMS`">
-        <meta attribute="friendlyName">Binder Items</meta>
+    <class name="org.web4thejob.tjoblet.orm.ContentHierarchy" schema="web4t" table="`CONTENT_HIERARCHY`">
+        <meta attribute="friendlyName">Content Hierarchy</meta>
 
         <id name="id" type="long">
             <meta attribute="friendlyName">ID</meta>
@@ -15,18 +15,18 @@
         </id>
 
         <natural-id mutable="true">
-            <many-to-one name="binder" class="org.web4thejob.tjoblet.orm.Binder"
-                         fetch="select" not-null="true">
-                <meta attribute="friendlyName">Binder</meta>
+            <many-to-one name="parent" class="org.web4thejob.tjoblet.orm.Binder"
+                         fetch="select" not-null="true" lazy="false">
+                <meta attribute="friendlyName">Parent</meta>
                 <meta attribute="index">2</meta>
-                <column name="`BINDER_ID`" not-null="true"/>
+                <column name="`PARENT_ID`" not-null="true"/>
             </many-to-one>
 
-            <many-to-one name="document" class="org.web4thejob.tjoblet.orm.Document"
-                         fetch="select" not-null="true">
-                <meta attribute="friendlyName">Document</meta>
+            <many-to-one name="child" class="org.web4thejob.tjoblet.orm.Content"
+                         fetch="select" not-null="true" lazy="false">
+                <meta attribute="friendlyName">Child</meta>
                 <meta attribute="index">3</meta>
-                <column name="`DOCUMENT_ID`" not-null="true"/>
+                <column name="`CHILD_ID`" not-null="true"/>
             </many-to-one>
         </natural-id>
 

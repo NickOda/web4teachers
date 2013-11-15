@@ -50,10 +50,10 @@ public class MappingTest extends AbstractORMTest {
         binder.setName("MyB");
         ContextUtil.getDWS().save(binder);
 
-        BinderItem binderItem = new BinderItem();
-        binderItem.setBinder(binder);
-        binderItem.setDocument(doc);
-        ContextUtil.getDWS().save(binderItem);
+        ContentHierarchy contentHierarchy = new ContentHierarchy();
+        contentHierarchy.setParent(binder);
+        contentHierarchy.setChild(doc);
+        ContextUtil.getDWS().save(contentHierarchy);
 
     }
 

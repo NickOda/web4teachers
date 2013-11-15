@@ -17,14 +17,14 @@
 
         <natural-id mutable="true">
             <many-to-one name="parent" class="org.web4thejob.tjoblet.orm.Category"
-                         fetch="select" not-null="true">
+                         fetch="select" not-null="true" lazy="false">
                 <meta attribute="friendlyName">Parent</meta>
                 <meta attribute="index">2</meta>
                 <column name="`PARENT_ID`" not-null="true"/>
             </many-to-one>
 
             <many-to-one name="child" class="org.web4thejob.tjoblet.orm.Category"
-                         fetch="select" not-null="true">
+                         fetch="select" not-null="true" lazy="false">
                 <meta attribute="friendlyName">Child</meta>
                 <meta attribute="index">3</meta>
                 <column name="`CHILD_ID`" not-null="true"/>

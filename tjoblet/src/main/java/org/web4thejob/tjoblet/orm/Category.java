@@ -2,7 +2,7 @@ package org.web4thejob.tjoblet.orm;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
-import org.web4thejob.orm.EntityHierarchyItem;
+import org.web4thejob.orm.EntityHierarchyParent;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -13,7 +13,8 @@ import java.util.Set;
  * @author Veniamin Isaias
  * @since 1.0.0
  */
-public class Category extends AbstractHibernateEntity implements EntityHierarchyItem<CategoryHierarchy> {
+public class Category extends AbstractHibernateEntity implements EntityHierarchyParent<Category, Category,
+        CategoryHierarchy> {
     private long id;
     @NotBlank
     private String name;
@@ -70,6 +71,11 @@ public class Category extends AbstractHibernateEntity implements EntityHierarchy
         this.parents = parents;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    @Override
     public Set<CategoryHierarchy> getChildren() {
         return children;
     }

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.web4thejob.tjoblet.orm.Content" schema="web4t" table="`CONTENT`" abstract="true"
+           optimistic-lock="version">
+        <meta attribute="friendlyName">Content</meta>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="index">1</meta>
+            <column name="`ID`"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="true">
+            <property name="name" type="string">
+                <meta attribute="friendlyName">Name</meta>
+                <meta attribute="index">2</meta>
+                <column name="`NAME`" length="255" not-null="true"/>
+            </property>
+        </natural-id>
+
+        <version name="version" access="field" type="integer" column="`VERSION`"/>
+
+        <property name="bookDate" type="timestamp" update="false">
+            <meta attribute="friendlyName">Book Date</meta>
+            <meta attribute="index">3</meta>
+            <meta attribute="disable-user-insert">true</meta>
+            <meta attribute="disable-user-update">true</meta>
+            <column name="`BOOK_DATE`" not-null="true"/>
+        </property>
+
+        <property name="updateDate" type="timestamp" insert="false">
+            <meta attribute="friendlyName">Update Date</meta>
+            <meta attribute="index">4</meta>
+            <meta attribute="disable-user-insert">true</meta>
+            <meta attribute="disable-user-update">true</meta>
+            <column name="`UPDATE_DATE`" not-null="false"/>
+        </property>
+
+        <many-to-one name="owner" class="org.web4thejob.security.UserIdentity"
+                     fetch="select" not-null="true">
+            <meta attribute="friendlyName">Owner</meta>
+            <meta attribute="index">5</meta>
+            <column name="`OWNER_ID`" not-null="true"/>
+        </many-to-one>
+
+        <set name="parents" table="`CONTENT_HIERARCHY`" schema="web4t" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Parents</meta>
+            <key>
+                <column name="`CHILD_ID`" not-null="false"/>
+            </key>
+            <one-to-many class="org.web4thejob.tjoblet.orm.ContentHierarchy"/>
+        </set>
+
+
+    </class>
+</hibernate-mapping>

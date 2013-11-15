@@ -4,25 +4,13 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.web4thejob.tjoblet.orm.Document" schema="web4t" table="`DOCUMENT`" optimistic-lock="version">
+    <joined-subclass name="org.web4thejob.tjoblet.orm.Document"
+                     schema="web4t"
+                     table="`DOCUMENT`"
+                     extends="org.web4thejob.tjoblet.orm.Content">
         <meta attribute="friendlyName">Document</meta>
 
-        <id name="id" type="long">
-            <meta attribute="friendlyName">ID</meta>
-            <meta attribute="index">1</meta>
-            <column name="`ID`"/>
-            <generator class="native"/>
-        </id>
-
-        <natural-id mutable="true">
-            <property name="name" type="string">
-                <meta attribute="friendlyName">Title</meta>
-                <meta attribute="index">2</meta>
-                <column name="`CODE`" length="255" not-null="true"/>
-            </property>
-        </natural-id>
-
-        <version name="version" access="field" type="integer" column="`VERSION`"/>
+        <key column="`ID`"/>
 
         <many-to-one name="category" class="org.web4thejob.tjoblet.orm.Category"
                      fetch="select" not-null="true">
@@ -37,38 +25,5 @@
             <column name="`BODY`" length="5000000" not-null="true"/>
         </property>
 
-        <property name="bookDate" type="timestamp" update="false">
-            <meta attribute="friendlyName">Book Date</meta>
-            <meta attribute="index">5</meta>
-            <meta attribute="disable-user-insert">true</meta>
-            <meta attribute="disable-user-update">true</meta>
-            <column name="`BOOK_DATE`" not-null="true"/>
-        </property>
-
-        <property name="updateDate" type="timestamp" insert="false">
-            <meta attribute="friendlyName">Update Date</meta>
-            <meta attribute="index">6</meta>
-            <meta attribute="disable-user-insert">true</meta>
-            <meta attribute="disable-user-update">true</meta>
-            <column name="`UPDATE_DATE`" not-null="false"/>
-        </property>
-
-        <many-to-one name="owner" class="org.web4thejob.security.UserIdentity"
-                     fetch="select" not-null="true">
-            <meta attribute="friendlyName">Owner</meta>
-            <meta attribute="index">7</meta>
-            <column name="`OWNER_ID`" not-null="true"/>
-        </many-to-one>
-
-
-        <set name="binderItems" table="`BINDER_ITEMS`" inverse="true" lazy="true" fetch="select">
-            <meta attribute="friendlyName">Items</meta>
-            <meta attribute="index">5</meta>
-            <key>
-                <column name="`DOCUMENT_ID`" not-null="false"/>
-            </key>
-            <one-to-many class="org.web4thejob.tjoblet.orm.BinderItem"/>
-        </set>
-
-    </class>
+    </joined-subclass>
 </hibernate-mapping>

@@ -32,7 +32,7 @@
             <one-to-many class="org.web4thejob.tjoblet.orm.Document"/>
         </set>
 
-        <set name="parents" table="`CATEGORY_HIERARCHY`" inverse="true" lazy="true" fetch="select">
+        <set name="parents" table="`CATEGORY_HIERARCHY`" schema="web4t" inverse="true" lazy="true" fetch="select">
             <meta attribute="friendlyName">Parents</meta>
             <key>
                 <column name="`CHILD_ID`" not-null="false"/>
@@ -40,7 +40,7 @@
             <one-to-many class="org.web4thejob.tjoblet.orm.CategoryHierarchy"/>
         </set>
 
-        <set name="children" table="`CATEGORY_HIERARCHY`" inverse="true" lazy="true" fetch="select"
+        <set name="children" table="`CATEGORY_HIERARCHY`" schema="web4t" inverse="true" lazy="true" fetch="select"
              order-by="SORTING">
             <meta attribute="friendlyName">Children</meta>
             <key>
