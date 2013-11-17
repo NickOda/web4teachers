@@ -99,6 +99,10 @@
         <servlet-name>docsService</servlet-name>
         <servlet-class>org.web4thejob.servlet.DocumentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>notesService</servlet-name>
+        <servlet-class>org.web4thejob.servlet.NoteServlet</servlet-class>
+    </servlet>
 
     <!-- Map all *.zul, *.zhtml to ZK loader -->
     <servlet-mapping>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>docsService</servlet-name>
         <url-pattern>/doc/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>notesService</servlet-name>
+        <url-pattern>/note/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
