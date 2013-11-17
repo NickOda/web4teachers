@@ -48,7 +48,13 @@
             <column name="`OWNER_ID`" not-null="true"/>
         </many-to-one>
 
-        <set name="parents" table="`CONTENT_HIERARCHY`" schema="web4t" inverse="true" lazy="true" fetch="select">
+        <one-to-one name="notes" class="org.web4thejob.tjoblet.orm.ContentNotes" fetch="select" cascade="all">
+            <meta attribute="friendlyName">Notes</meta>
+            <meta attribute="orderno">6</meta>
+        </one-to-one>
+
+        <set name="parents" table="`CONTENT_HIERARCHY`" schema="web4t" inverse="true" lazy="true" fetch="select"
+             cascade="delete">
             <meta attribute="friendlyName">Parents</meta>
             <key>
                 <column name="`CHILD_ID`" not-null="false"/>

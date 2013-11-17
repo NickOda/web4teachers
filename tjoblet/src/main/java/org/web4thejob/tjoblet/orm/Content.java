@@ -25,6 +25,8 @@ public abstract class Content extends AbstractHibernateEntity implements EntityH
     private Date updateDate;
     @UserIdHolder
     private UserIdentity owner;
+
+    private ContentNotes notes;
     private Set<ContentHierarchy> parents = new HashSet<ContentHierarchy>();
 
     public String getName() {
@@ -89,4 +91,14 @@ public abstract class Content extends AbstractHibernateEntity implements EntityH
     public void setParents(Set<ContentHierarchy> parents) {
         this.parents = parents;
     }
+
+    public ContentNotes getNotes() {
+        return notes;
+    }
+
+    public void setNotes(ContentNotes notes) {
+        this.notes = notes;
+    }
+
+
 }
