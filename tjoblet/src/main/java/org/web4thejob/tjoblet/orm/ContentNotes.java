@@ -3,9 +3,12 @@ package org.web4thejob.tjoblet.orm;
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
 import org.web4thejob.orm.annotation.HtmlHolder;
+import org.web4thejob.orm.annotation.InsertTimeHolder;
+import org.web4thejob.orm.annotation.UpdateTimeHolder;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 public class ContentNotes extends AbstractHibernateEntity {
     private long id;
@@ -14,6 +17,10 @@ public class ContentNotes extends AbstractHibernateEntity {
     @NotBlank
     @HtmlHolder
     private String notes;
+    @InsertTimeHolder
+    private Date bookDate;
+    @UpdateTimeHolder
+    private Date updateDate;
 
     public long getId() {
         return id;
@@ -48,4 +55,22 @@ public class ContentNotes extends AbstractHibernateEntity {
     public void setAsNew() {
         id = 0;
     }
+
+    public Date getBookDate() {
+        return bookDate;
+    }
+
+    public void setBookDate(Date bookDate) {
+        this.bookDate = bookDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+
 }

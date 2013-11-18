@@ -30,7 +30,7 @@ import java.util.Set;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentPanel {
-    private PropertyMetadata htmlProperty;
+    protected PropertyMetadata htmlProperty;
 
     public DefaultDocumentPanel() {
         super();
@@ -53,7 +53,7 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     protected void arrangeForTargetEntity(Entity targetEntity) {
         this.targetEntity = targetEntity;
         if (this.targetEntity == null) {
-            iframe.setSrc("templ/blank.html");
+            iframe.setSrc(getBlank());
             arrangeForState(PanelState.READY);
         } else if (isBound()) {
             iframe.setSrc(getSettingValue(SettingEnum.TARGET_URL, "") + targetEntity.getIdentifierValue().toString());
@@ -70,19 +70,15 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     public Set<CommandEnum> getSupportedCommands() {
         Set<CommandEnum> supported = new HashSet<CommandEnum>(super.getSupportedCommands());
         supported.add(CommandEnum.REFRESH);
-        supported.add(CommandEnum.ADDNEW);
         supported.add(CommandEnum.UPDATE);
-        supported.add(CommandEnum.DELETE);
-        supported.add(CommandEnum.PRINT);
-        supported.add(CommandEnum.RELATED_PANELS);
         return Collections.unmodifiableSet(supported);
     }
 
     @Override
     protected void processValidCommand(Command command) {
-        if (command.getId() == CommandEnum.REFRESH) {
+        if (command.getId().equals(CommandEnum.REFRESH)) {
             refresh();
-        } else if (command.getId() == CommandEnum.UPDATE) {
+        } else if (command.getId().equals(CommandEnum.UPDATE)) {
             if (hasTargetEntity() && htmlProperty != null) {
                 HtmlDialog dialog = ContextUtil.getDefaultDialog(HtmlDialog.class,
                         htmlProperty.getValue(getTargetEntity()).toString());
@@ -114,7 +110,6 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     protected void arrangeForTargetType() {
         super.arrangeForTargetType();
         registerCommand(ContextUtil.getDefaultCommand(CommandEnum.REFRESH, this));
-        registerCommand(ContextUtil.getDefaultCommand(CommandEnum.ADDNEW, this));
         registerCommand(ContextUtil.getDefaultCommand(CommandEnum.UPDATE, this));
         htmlProperty = ContextUtil.getMRS().getPropertyMetadata(getTargetType(),
                 getSettingValue(SettingEnum.HTML_PROPERTY, ""));
@@ -124,7 +119,7 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     public void render() {
         super.render();
         if (!hasTargetEntity()) {
-            iframe.setSrc("templ/blank.html");
+            iframe.setSrc(getBlank());
         }
     }
 
@@ -135,14 +130,12 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     }
 
     @Override
-    protected void arrangeForState(PanelState newState) {
-        super.arrangeForState(newState);
-    }
-
-    @Override
     protected boolean processEntityUpdate(Entity entity) {
         refresh();
         return super.processEntityUpdate(entity);
     }
 
+    protected String getBlank() {
+        return "templ/blank.html";
+    }
 }

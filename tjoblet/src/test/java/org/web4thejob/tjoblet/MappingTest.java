@@ -1,5 +1,6 @@
 package org.web4thejob.tjoblet;
 
+import junit.framework.Assert;
 import org.junit.Test;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.tjoblet.base.AbstractORMTest;
@@ -55,6 +56,10 @@ public class MappingTest extends AbstractORMTest {
         contentHierarchy.setChild(doc);
         ContextUtil.getDWS().save(contentHierarchy);
 
+
+        Document c1 = ContextUtil.getDRS().findById(Document.class, doc.getId());
+        Document c2 = (Document) c1.clone();
+        Assert.assertNotNull(c2.getOwner());
     }
 
 }

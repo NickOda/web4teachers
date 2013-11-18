@@ -14,7 +14,6 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.Date;
 
 /**
  * @author Veniamin Isaias
@@ -99,20 +98,5 @@ public abstract class AbstractServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
-    }
-
-    @Override
-    protected long getLastModified(HttpServletRequest req) {
-        return new Date().getTime();
-    }
-
-    @Override
-    public void init() throws ServletException {
-        super.init();    //To change body of overridden methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();    //To change body of overridden methods use File | Settings | File Templates.
     }
 }
