@@ -19,7 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `w4tj`
 --
-DROP DATABASE `w4tj`;
 CREATE DATABASE `w4tj` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `w4tj`;
 
@@ -745,7 +744,6 @@ ALTER TABLE `user_identity`
 --
 -- Database: `web4t`
 --
-DROP DATABASE `web4t`;
 CREATE DATABASE `web4t` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `web4t`;
 
