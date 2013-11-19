@@ -1,0 +1,19 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background: #888;
+	font: 80%/1.4 tahoma, arial, helvetica, lucida sans, sans-serif;
+	height: 100%;
+}
+
+body {
+	margin: 1em 1em;
+	padding: 1em 1em;
+	border: 1px solid #333;
+	background: rgb(255,255,255);
+	min-height:90%;
+	box-shadow: 0 0 .5em #333;
+}
