@@ -90,6 +90,10 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
                                     String.class));
                             ContextUtil.getDWS().save(getTargetEntity());
                             refresh();
+
+                            Message updMessage = ContextUtil.getMessage(MessageEnum.ENTITY_UPDATED,
+                                    DefaultDocumentPanel.this);
+                            dispatchMessage(updMessage);
                         }
                     }
                 });
@@ -136,6 +140,6 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
     }
 
     protected String getBlank() {
-        return "templ/blank.html";
+        return "templ/blank_doc.html";
     }
 }

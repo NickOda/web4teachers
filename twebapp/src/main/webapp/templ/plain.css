@@ -1,16 +1,13 @@
-* {
+html {
 	margin: 0;
 	padding: 0;
-}
-
-html {
 	background: #888;
 	font: 80%/1.4 tahoma, arial, helvetica, lucida sans, sans-serif;
 	height: 100%;
 }
 
 body {
-	margin: 1em 1em;
+	margin: 0.7em 0.7em;
 	padding: 1em 1em;
 	border: 1px solid #333;
 	background: rgb(255,255,255);

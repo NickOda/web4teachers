@@ -53,6 +53,10 @@ public class DocumentNotesPanel extends DefaultDocumentPanel {
                                         String.class));
                                 ContextUtil.getDWS().save(entity);
                                 bind(entity);
+
+                                Message insMessage = ContextUtil.getMessage(MessageEnum.ENTITY_INSERTED,
+                                        DocumentNotesPanel.this);
+                                dispatchMessage(insMessage);
                             }
                         }
                     });

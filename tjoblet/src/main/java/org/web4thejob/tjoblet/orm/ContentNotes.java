@@ -1,6 +1,7 @@
 package org.web4thejob.tjoblet.orm;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.AbstractHibernateEntity;
 import org.web4thejob.orm.annotation.HtmlHolder;
 import org.web4thejob.orm.annotation.InsertTimeHolder;
@@ -72,5 +73,12 @@ public class ContentNotes extends AbstractHibernateEntity {
         this.updateDate = updateDate;
     }
 
+    @Override
+    public String toString() {
+        if (content != null) {
+            return ContextUtil.getMRS().deproxyEntity(content).toString();
+        }
+        return "Note: <Blank>";
+    }
 
 }

@@ -25,5 +25,13 @@
             <column name="`BODY`" length="5000000" not-null="true"/>
         </property>
 
+        <set name="attachments" table="`DOC_ATTACHMENT`" schema="web4t" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Attachments</meta>
+            <key>
+                <column name="`DOC_ID`" not-null="false"/>
+            </key>
+            <one-to-many class="org.web4thejob.tjoblet.orm.DocAttachment"/>
+        </set>
+
     </joined-subclass>
 </hibernate-mapping>

@@ -11,8 +11,13 @@ import org.web4thejob.tjoblet.orm.ContentNotes;
 public class NoteServlet extends AbstractServlet {
 
     @Override
+    protected String getDefaultTemplate() {
+        return "plain_note";
+    }
+
+    @Override
     protected String getTitle(Entity entity) {
-        return "Notes:";
+        return ((ContentNotes) entity).getContent().getName();
     }
 
     @Override

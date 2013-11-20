@@ -24,6 +24,8 @@ import org.web4thejob.orm.annotation.EntityHierarchyHolder;
 import org.web4thejob.orm.annotation.HtmlHolder;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Veniamin Isaias
@@ -36,6 +38,7 @@ public class Document extends Content {
     @NotBlank
     @HtmlHolder
     private String body;
+    private Set<DocAttachment> attachments = new HashSet<>();
 
     public String getBody() {
         return body;
@@ -51,6 +54,14 @@ public class Document extends Content {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Set<DocAttachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(Set<DocAttachment> attachments) {
+        this.attachments = attachments;
     }
 
 }

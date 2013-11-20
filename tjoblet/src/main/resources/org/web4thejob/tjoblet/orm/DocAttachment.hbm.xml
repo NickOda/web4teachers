@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.web4thejob.tjoblet.orm.DocAttachment" table="DOC_ATTACHMENT" schema="web4t">
+        <meta attribute="friendlyName">Document Attachment</meta>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="index">1</meta>
+            <column name="`ID`"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="title" type="string">
+            <meta attribute="friendlyName">Title</meta>
+            <meta attribute="index">2</meta>
+            <column name="`TITLE`" length="255" not-null="true"/>
+        </property>
+
+        <many-to-one name="document" class="org.web4thejob.tjoblet.orm.Document"
+                     fetch="select" not-null="true">
+            <meta attribute="friendlyName">Document</meta>
+            <meta attribute="index">3</meta>
+            <column name="`DOC_ID`" not-null="true"/>
+        </many-to-one>
+
+        <property name="attachment" type="materialized_blob">
+            <meta attribute="friendlyName">Attachment</meta>
+            <meta attribute="orderno">4</meta>
+            <column name="ATTACHMENT" length="10000000" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -32,7 +32,7 @@ public abstract class AbstractServlet extends HttpServlet {
         }
         String templId = getTemplId(request);
         if (templId == null) {
-            templId = "plain";
+            templId = getDefaultTemplate();
         }
 
         Entity entity = getEntity(docId);
@@ -60,6 +60,8 @@ public abstract class AbstractServlet extends HttpServlet {
         }
 
     }
+
+    protected abstract String getDefaultTemplate();
 
     protected abstract String getTitle(Entity entity);
 

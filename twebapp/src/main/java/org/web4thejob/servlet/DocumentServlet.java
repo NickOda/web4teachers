@@ -11,6 +11,11 @@ import org.web4thejob.tjoblet.orm.Document;
 public class DocumentServlet extends AbstractServlet {
 
     @Override
+    protected String getDefaultTemplate() {
+        return "plain_doc";
+    }
+
+    @Override
     protected String getTitle(Entity entity) {
         return ((Document) entity).getName();
     }
