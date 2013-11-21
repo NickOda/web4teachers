@@ -55,9 +55,11 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
         if (this.targetEntity == null) {
             iframe.setSrc(getBlank());
             arrangeForState(PanelState.READY);
+            refresh();
         } else if (isBound()) {
             iframe.setSrc(getSettingValue(SettingEnum.TARGET_URL, "") + targetEntity.getIdentifierValue().toString());
             arrangeForState(PanelState.FOCUSED);
+            refresh();
         }
     }
 
