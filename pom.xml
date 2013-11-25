@@ -17,13 +17,4 @@
         <org.web4thejob.version>3.5.2-SNAPSHOT</org.web4thejob.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.zkoss.zkforge</groupId>
-                <artifactId>ckez</artifactId>
-                <version>3.6.4.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
