@@ -79,6 +79,16 @@ public class CategoryHierarchy extends AbstractHibernateEntity implements Entity
     }
 
     @Override
+    public String getParentPropertyName() {
+        return "parent";
+    }
+
+    @Override
+    public String getChildPropertyName() {
+        return "child";
+    }
+
+    @Override
     public Class<Category> getChildType() {
         return Category.class;
     }

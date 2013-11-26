@@ -81,6 +81,16 @@ public class ContentHierarchy extends AbstractHibernateEntity implements EntityH
     }
 
     @Override
+    public String getParentPropertyName() {
+        return "parent";
+    }
+
+    @Override
+    public String getChildPropertyName() {
+        return "child";
+    }
+
+    @Override
     public Class<Content> getChildType() {
         return Content.class;
     }
