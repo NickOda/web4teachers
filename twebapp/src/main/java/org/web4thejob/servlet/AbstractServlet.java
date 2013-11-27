@@ -28,17 +28,21 @@ public abstract class AbstractServlet extends HttpServlet {
 
         long docId = getDocId(request);
         if (docId <= 0) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
+
+        Entity entity = getEntity(docId);
+        if (entity == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+
         String templId = getTemplId(request);
         if (templId == null) {
             templId = getDefaultTemplate();
         }
 
-        Entity entity = getEntity(docId);
-        if (entity == null) {
-            return;
-        }
 
         if (baseRef == null) {
             baseRef = getBaseURL(request);
@@ -47,16 +51,21 @@ public abstract class AbstractServlet extends HttpServlet {
         response.setContentType("text/html; charset=utf-8");
         ServletContextResource template = (ServletContextResource) ContextUtil.getResource("templ/" + templId + "" +
                 ".html");
+
         PrintWriter out = response.getWriter();
-        for (String line : Files.readAllLines(template.getFile().toPath(), Charsets.UTF_8)) {
-            if (line.contains("${basref}")) {
-                line = line.replace("${basref}", baseRef.toString());
-            } else if (line.contains("${body}")) {
-                line = line.replace("${body}", getBody(entity));
-            } else if (line.contains("${title}")) {
-                line = line.replace("${title}", getTitle(entity));
+        try {
+            for (String line : Files.readAllLines(template.getFile().toPath(), Charsets.UTF_8)) {
+                if (line.contains("${basref}")) {
+                    line = line.replace("${basref}", baseRef.toString());
+                } else if (line.contains("${body}")) {
+                    line = line.replace("${body}", getBody(entity));
+                } else if (line.contains("${title}")) {
+                    line = line.replace("${title}", getTitle(entity));
+                }
+                out.println(line);
             }
-            out.println(line);
+        } finally {
+            out.close();
         }
 
     }

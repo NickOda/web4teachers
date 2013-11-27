@@ -1,16 +1,27 @@
-html {
-	margin: 0;
-	padding: 0;
-	background: #888;
-	font: 80%/1.4 tahoma, arial, helvetica, lucida sans, sans-serif;
-	height: 100%;
+@media all {
+	html {
+		margin: 0;
+		padding: 0;
+		font: 80%/1.4 tahoma, arial, helvetica, lucida sans, sans-serif;
+		height: 100%;
+	}
+
+	body {
+		margin: 0.7em 0.7em;
+		padding: 1em 1em;
+		background: #FFFFFF;
+	}
 }
 
-body {
-	margin: 0.7em 0.7em;
-	padding: 1em 1em;
-	border: 1px solid #333;
-	background: rgb(255,255,255);
-	min-height:90%;
-	box-shadow: 0 0 .5em #333;
+@media screen {
+	html {
+		background: #888;
+	}
+	
+	body {
+		border: 1px solid #333;
+		min-height:90%;
+		box-shadow: 0 0 .5em #333;
+	}
+
 }

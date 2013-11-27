@@ -13,15 +13,35 @@ import java.io.IOException;
 public class AttachmentServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
 
-        DocAttachment docAttachment = ContextUtil.getDRS().findById(DocAttachment.class, getDocId(req));
+        long rawId = getDocId(request);
+        if (rawId <= 0) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        DocAttachment docAttachment = ContextUtil.getDRS().findById(DocAttachment.class, rawId);
+        if (docAttachment == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+
         byte[] raw = MediaUtil.getMediaBytes(docAttachment.getAttachment());
         String type = MediaUtil.getMediaFormat(docAttachment.getAttachment());
-        resp.setContentType("image/jpeg");
-        resp.setContentLength(raw.length);
-        resp.getOutputStream().write(raw);
+
+        if (MediaUtil.isImage(type)) {
+            response.setContentType("image/" + (type.equals("jpg") ? "jpeg" : type));
+        } else {
+            response.setContentType("application/" + type);
+        }
+
+        response.setHeader("Content-Disposition", "attachment; filename=" + "\"" + docAttachment.getTitle() + "." +
+                type + "\"");
+        response.setContentLength(raw.length);
+        response.getOutputStream().write(raw);
+        response.getOutputStream().close();
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.web4thejob.tjoblet.orm;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
+import org.web4thejob.orm.annotation.ImageHolder;
 import org.web4thejob.orm.annotation.MediaHolder;
 
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ public class DocAttachment extends AbstractHibernateEntity {
     private Document document;
 
     @MediaHolder
+    @ImageHolder
     @NotNull
     private byte[] attachment;
 
