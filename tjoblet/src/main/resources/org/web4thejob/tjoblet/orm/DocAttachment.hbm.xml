@@ -32,5 +32,11 @@
             <meta attribute="orderno">4</meta>
             <column name="ATTACHMENT" length="10000000" not-null="true"/>
         </property>
+
+        <property name="url" type="string">
+            <meta attribute="friendlyName">Link</meta>
+            <meta attribute="orderno">5</meta>
+            <formula>`ID`</formula>
+        </property>
     </class>
 </hibernate-mapping>

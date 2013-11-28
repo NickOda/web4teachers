@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
 import org.web4thejob.orm.annotation.ImageHolder;
 import org.web4thejob.orm.annotation.MediaHolder;
+import org.web4thejob.orm.annotation.UrlHolder;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -18,6 +19,8 @@ public class DocAttachment extends AbstractHibernateEntity {
     private String title;
     @NotNull
     private Document document;
+    @UrlHolder
+    private String url;
 
     @MediaHolder
     @ImageHolder
@@ -72,4 +75,11 @@ public class DocAttachment extends AbstractHibernateEntity {
     }
 
 
+    public String getUrl() {
+        return "raw?id=" + id;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
