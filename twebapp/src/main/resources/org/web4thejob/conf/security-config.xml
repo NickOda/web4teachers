@@ -121,6 +121,11 @@
         <intercept-url pattern="/pub/**" access="permitAll"/>
         <intercept-url pattern="/favicon.ico" access="permitAll"/>
 
+        <!--Open servlets for public access-->
+        <intercept-url pattern="/doc" access="permitAll"/>
+        <intercept-url pattern="/note" access="permitAll"/>
+        <intercept-url pattern="/raw" access="permitAll"/>
+
         <intercept-url pattern="/**" access="authenticated and !firstUse"/>
         <form-login always-use-default-target="true"
                     authentication-failure-handler-ref="credentialsExpiredErrorHandler"/>
