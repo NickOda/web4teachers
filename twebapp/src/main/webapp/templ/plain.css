@@ -3,6 +3,7 @@
 		margin: 0;
 		padding: 0;
 		font: 80%/1.4 tahoma, arial, helvetica, lucida sans, sans-serif;
+		color: rgb(37, 37, 37);
 		height: 100%;
 	}
 
@@ -11,6 +12,11 @@
 		padding: 1em 1em;
 		background: #FFFFFF;
 	}
+
+    h1, h2, h3, h4, h5, h6 {
+        color: rgb(9, 124, 160);
+    }
+
 }
 
 @media screen {

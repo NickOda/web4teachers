@@ -40,6 +40,11 @@ public class Document extends Content {
     private String body;
     private Set<DocAttachment> attachments = new HashSet<>();
 
+    public Document() {
+        setAsNew();
+    }
+
+
     public String getBody() {
         return body;
     }
@@ -64,4 +69,9 @@ public class Document extends Content {
         this.attachments = attachments;
     }
 
+    @Override
+    public void setAsNew() {
+        super.setAsNew();
+        body = "Place the body of the document here ...";
+    }
 }
