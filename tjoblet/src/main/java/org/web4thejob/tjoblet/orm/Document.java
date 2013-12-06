@@ -72,6 +72,7 @@ public class Document extends Content {
     @Override
     public void setAsNew() {
         super.setAsNew();
-        body = "Place the body of the document here ...";
+        body = "<p>Fill in the document's body by clicking on the <img src=\"img/CMD_UPDATE.png\"></img> toolbar icon" +
+                ".</p>";
     }
 }

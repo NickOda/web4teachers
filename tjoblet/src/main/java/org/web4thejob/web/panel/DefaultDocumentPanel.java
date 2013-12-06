@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.util.StringUtils;
 import org.web4thejob.command.Command;
 import org.web4thejob.command.CommandEnum;
+import org.web4thejob.command.ToolbarbuttonCommandDecorator;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.message.Message;
 import org.web4thejob.message.MessageArgEnum;
@@ -13,6 +14,7 @@ import org.web4thejob.orm.Entity;
 import org.web4thejob.orm.PropertyMetadata;
 import org.web4thejob.setting.SettingEnum;
 import org.web4thejob.web.dialog.HtmlDialog;
+import org.web4thejob.web.util.ZkUtil;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
@@ -20,6 +22,7 @@ import org.zkoss.zk.ui.util.Clients;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -54,12 +57,34 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
         this.targetEntity = targetEntity;
         if (this.targetEntity == null) {
             iframe.setSrc(getBlank());
+            prepareForPrint();
             arrangeForState(PanelState.READY);
             refresh();
         } else if (isBound()) {
             iframe.setSrc(getSettingValue(SettingEnum.TARGET_URL, "") + targetEntity.getIdentifierValue().toString());
+            prepareForPrint();
             arrangeForState(PanelState.FOCUSED);
             refresh();
+        }
+    }
+
+    private void prepareForPrint() {
+        Command command = getCommand(CommandEnum.PRINT);
+        if (command == null) return;
+
+        List<ToolbarbuttonCommandDecorator> decorators = ZkUtil.getCommandDecorators(command,
+                ToolbarbuttonCommandDecorator.class);
+        if (!decorators.isEmpty()) {
+            for (ToolbarbuttonCommandDecorator button : decorators) {
+                if (hasTargetEntity()) {
+                    String url = getSettingValue(SettingEnum.TARGET_URL, "") + targetEntity.getIdentifierValue()
+                            .toString();
+                    button.setHref(url);
+                    button.setTarget("_blank");
+                } else {
+                    button.setHref(null);
+                }
+            }
         }
     }
 
@@ -73,6 +98,7 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
         Set<CommandEnum> supported = new HashSet<CommandEnum>(super.getSupportedCommands());
         supported.add(CommandEnum.REFRESH);
         supported.add(CommandEnum.UPDATE);
+        supported.add(CommandEnum.PRINT);
         return Collections.unmodifiableSet(supported);
     }
 
@@ -117,6 +143,7 @@ public class DefaultDocumentPanel extends DefaultFramePanel implements DocumentP
         super.arrangeForTargetType();
         registerCommand(ContextUtil.getDefaultCommand(CommandEnum.REFRESH, this));
         registerCommand(ContextUtil.getDefaultCommand(CommandEnum.UPDATE, this));
+        registerCommand(ContextUtil.getDefaultCommand(CommandEnum.PRINT, this));
         htmlProperty = ContextUtil.getMRS().getPropertyMetadata(getTargetType(),
                 getSettingValue(SettingEnum.HTML_PROPERTY, ""));
     }

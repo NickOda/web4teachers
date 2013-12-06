@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>tjoblet</module>
-        <!--<module>twebapp</module>-->
+        <module>twebapp</module>
     </modules>
     <packaging>pom</packaging>
 
