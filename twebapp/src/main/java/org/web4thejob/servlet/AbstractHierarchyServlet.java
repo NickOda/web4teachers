@@ -77,7 +77,7 @@ public abstract class AbstractHierarchyServlet extends AbstractServlet {
 
     protected String getTitle(String title, List<Integer> level) {
         StringBuffer sb = new StringBuffer();
-        int depth = level.size();
+        int depth = level.size() + 1;
         sb.append("<h");
         sb.append(depth);
         sb.append(">");
