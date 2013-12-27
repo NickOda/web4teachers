@@ -24,6 +24,7 @@ import org.web4thejob.orm.annotation.EntityHierarchyHolder;
 import org.web4thejob.orm.annotation.HtmlHolder;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,6 +36,8 @@ public class Document extends Content {
     @NotNull
     @EntityHierarchyHolder(hierarchyType = CategoryHierarchy.class)
     private Category category;
+    private Date referenceDate;
+    private DocumentType type;
     @NotBlank
     @HtmlHolder
     private String body;
@@ -44,6 +47,21 @@ public class Document extends Content {
         setAsNew();
     }
 
+    public Date getReferenceDate() {
+        return referenceDate;
+    }
+
+    public void setReferenceDate(Date referenceDate) {
+        this.referenceDate = referenceDate;
+    }
+
+    public DocumentType getType() {
+        return type;
+    }
+
+    public void setType(DocumentType type) {
+        this.type = type;
+    }
 
     public String getBody() {
         return body;

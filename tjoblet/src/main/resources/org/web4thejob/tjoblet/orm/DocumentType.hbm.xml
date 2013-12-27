@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.web4thejob.tjoblet.orm.DocumentType"
+           schema="web4t"
+           table="`DOCUMENT_TYPE`">
+        <meta attribute="friendlyName">Document Type</meta>
+
+        <cache usage="nonstrict-read-write"/>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="index">1</meta>
+            <column name="`ID`"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="true">
+            <property name="name" type="string">
+                <meta attribute="friendlyName">Name</meta>
+                <meta attribute="index">2</meta>
+                <column name="`NAME`" length="255" not-null="true"/>
+            </property>
+        </natural-id>
+
+        <set name="documents" table="`DOCUMENT`" schema="web4t" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Documents</meta>
+            <key>
+                <column name="`DOC_TYPE_ID`" not-null="false"/>
+            </key>
+            <one-to-many class="org.web4thejob.tjoblet.orm.Document"/>
+        </set>
+
+    </class>
+</hibernate-mapping>
