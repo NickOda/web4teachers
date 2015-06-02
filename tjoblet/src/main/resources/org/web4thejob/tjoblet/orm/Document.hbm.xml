@@ -8,7 +8,7 @@
                      schema="web4t"
                      table="`DOCUMENT`"
                      extends="org.web4thejob.tjoblet.orm.Content">
-        <meta attribute="friendlyName">Document</meta>
+        <meta attribute="friendlyName">Question</meta>
 
         <key column="`ID`"/>
 

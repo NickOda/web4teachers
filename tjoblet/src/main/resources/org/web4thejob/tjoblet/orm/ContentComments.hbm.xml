@@ -2,8 +2,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.web4thejob.tjoblet.orm.ContentNotes" schema="web4t" table="`CONTENT_NOTE`">
-        <meta attribute="friendlyName">Content Notes</meta>
+    <class name="org.web4thejob.tjoblet.orm.ContentComments" schema="web4t" table="`CONTENT_COMMENTS`">
+        <meta attribute="friendlyName">Content Comments</meta>
 
         <id name="id" type="long">
             <meta attribute="friendlyName">Id</meta>
@@ -21,10 +21,10 @@
             <meta attribute="index">2</meta>
         </one-to-one>
 
-        <property name="notes" type="materialized_clob">
-            <meta attribute="friendlyName">Answer</meta>
+        <property name="comments" type="materialized_clob">
+            <meta attribute="friendlyName">Comments</meta>
             <meta attribute="index">3</meta>
-            <column name="`NOTES`" length="5000000" not-null="true"/>
+            <column name="`COMMENTS`" length="5000000" not-null="true"/>
         </property>
 
         <property name="bookDate" type="timestamp" update="false">

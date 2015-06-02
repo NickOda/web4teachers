@@ -60,6 +60,23 @@ public class MappingTest extends AbstractORMTest {
         Document c1 = ContextUtil.getDRS().findById(Document.class, doc.getId());
         Document c2 = (Document) c1.clone();
         Assert.assertNotNull(c2.getOwner());
+
+
     }
 
+    @Test
+    public void test2() {
+        Binder binder = new Binder();
+        binder.setName("MyB");
+        ContextUtil.getDWS().save(binder);
+
+        ContentComments comm = new ContentComments();
+        comm.setComments("abcd");
+        comm.setContent(binder);
+        ContextUtil.getDWS().save(comm);
+
+        ContentComments comm2 = ContextUtil.getDRS().findById(ContentComments.class, comm.getId());
+        Assert.assertEquals(comm, comm2);
+
+    }
 }

@@ -110,6 +110,10 @@
         <servlet-class>org.web4thejob.servlet.NoteServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>commentService</servlet-name>
+        <servlet-class>org.web4thejob.servlet.CommentServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>attachmentsService</servlet-name>
         <servlet-class>org.web4thejob.servlet.AttachmentServlet</servlet-class>
     </servlet>
@@ -141,6 +145,10 @@
     <servlet-mapping>
         <servlet-name>notesService</servlet-name>
         <url-pattern>/note/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>commentService</servlet-name>
+        <url-pattern>/comment/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>attachmentsService</servlet-name>

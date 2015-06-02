@@ -69,7 +69,7 @@
                 <prop key="hibernate.cache">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
                 <prop key="net.sf.ehcache.configurationResourceName">/org/web4thejob/conf/orm-ehcache.xml</prop>
 
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
             </props>
         </property>
     </bean>
