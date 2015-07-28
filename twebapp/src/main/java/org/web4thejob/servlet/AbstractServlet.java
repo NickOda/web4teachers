@@ -27,7 +27,7 @@ public abstract class AbstractServlet extends HttpServlet {
             throws ServletException, IOException {
 
         long docId = getDocId(request);
-        if (docId <= 0 || docId > 100) {
+        if (docId <= 0) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }

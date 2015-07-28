@@ -22,7 +22,7 @@
         </one-to-one>
 
         <property name="notes" type="materialized_clob">
-            <meta attribute="friendlyName">Answer</meta>
+            <meta attribute="friendlyName">Notes</meta>
             <meta attribute="index">3</meta>
             <column name="`NOTES`" length="5000000" not-null="true"/>
         </property>

@@ -38,7 +38,6 @@ public class Document extends Content {
     private Category category;
     private Date referenceDate;
     private DocumentType type;
-    private String MyTest;
     @NotBlank
     @HtmlHolder
     private String body;

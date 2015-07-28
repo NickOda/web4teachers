@@ -110,7 +110,7 @@
         <servlet-class>org.web4thejob.servlet.NoteServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>commentService</servlet-name>
+        <servlet-name>commentsService</servlet-name>
         <servlet-class>org.web4thejob.servlet.CommentServlet</servlet-class>
     </servlet>
     <servlet>
@@ -147,7 +147,7 @@
         <url-pattern>/note/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>commentService</servlet-name>
+        <servlet-name>commentsService</servlet-name>
         <url-pattern>/comment/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
