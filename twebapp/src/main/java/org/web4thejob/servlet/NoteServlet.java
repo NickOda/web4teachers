@@ -17,7 +17,7 @@ public class NoteServlet extends AbstractServlet {
 
     @Override
     protected String getTitle(Entity entity) {
-        return ((ContentNotes) entity).getContent().getName();
+        return "Απάντηση";
     }
 
     @Override

@@ -26,6 +26,7 @@ public abstract class AbstractServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
         long docId = getDocId(request);
         if (docId <= 0) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
@@ -52,12 +53,16 @@ public abstract class AbstractServlet extends HttpServlet {
         ServletContextResource template = (ServletContextResource) ContextUtil.getResource("templ/" + templId + "" +
                 ".html");
 
+
         PrintWriter out = response.getWriter();
         try {
             for (String line : Files.readAllLines(template.getFile().toPath(), Charsets.UTF_8)) {
                 if (line.contains("${basref}")) {
                     line = line.replace("${basref}", baseRef.toString());
                 } else if (line.contains("${body}")) {
+//                    System.out.print(entity.getClass().toString());
+//                    System.out.print(" " + docId + " ");
+//                    System.out.println(PrintParameter.para);
                     line = line.replace("${body}", getBody(entity));
                 } else if (line.contains("${title}")) {
                     line = line.replace("${title}", getTitle(entity));

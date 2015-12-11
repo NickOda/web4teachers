@@ -17,12 +17,16 @@ public class DocumentServlet extends AbstractServlet {
 
     @Override
     protected String getTitle(Entity entity) {
-        return ((Document) entity).getName();
+        return "Εκφώνηση";
     }
 
     @Override
     protected String getBody(Entity entity) {
         return ((Document) entity).getBody();
+    }
+
+    protected String getSource(Entity entity) {
+        return ((Document) entity).getSource();
     }
 
     @Override

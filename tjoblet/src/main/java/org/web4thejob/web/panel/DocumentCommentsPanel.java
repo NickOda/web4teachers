@@ -1,5 +1,6 @@
 package org.web4thejob.web.panel;
 
+import org.springframework.context.annotation.Scope;
 import org.web4thejob.command.Command;
 import org.web4thejob.command.CommandEnum;
 import org.web4thejob.context.ContextUtil;
@@ -18,8 +19,8 @@ import org.web4thejob.web.dialog.HtmlDialog;
  * @since 1.0.0
  */
 
-//@org.springframework.stereotype.Component
-//@Scope("prototype")
+@org.springframework.stereotype.Component
+@Scope("prototype")
 public class DocumentCommentsPanel extends DefaultDocumentPanel {
 
     public DocumentCommentsPanel() {

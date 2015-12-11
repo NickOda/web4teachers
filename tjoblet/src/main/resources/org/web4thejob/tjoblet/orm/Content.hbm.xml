@@ -6,7 +6,7 @@
 <hibernate-mapping>
     <class name="org.web4thejob.tjoblet.orm.Content" schema="web4t" table="`CONTENT`" abstract="true"
            optimistic-lock="version">
-        <meta attribute="friendlyName">Content</meta>
+        <meta attribute="friendlyName">Περιεχόμενο</meta>
 
         <id name="id" type="long">
             <meta attribute="friendlyName">ID</meta>
@@ -17,7 +17,7 @@
 
         <natural-id mutable="true">
             <property name="name" type="string">
-                <meta attribute="friendlyName">Name</meta>
+                <meta attribute="friendlyName">Όνομα</meta>
                 <meta attribute="index">2</meta>
                 <column name="`NAME`" length="255" not-null="true"/>
             </property>
@@ -26,7 +26,7 @@
         <version name="version" access="field" type="integer" column="`VERSION`"/>
 
         <property name="bookDate" type="timestamp" update="false">
-            <meta attribute="friendlyName">Book Date</meta>
+            <meta attribute="friendlyName">Ημερομηνία Εισαγωγής</meta>
             <meta attribute="index">3</meta>
             <meta attribute="disable-user-insert">true</meta>
             <meta attribute="disable-user-update">true</meta>
@@ -34,7 +34,7 @@
         </property>
 
         <property name="updateDate" type="timestamp" insert="false">
-            <meta attribute="friendlyName">Update Date</meta>
+            <meta attribute="friendlyName">Ημερομηνία Ενημέρωσης</meta>
             <meta attribute="index">4</meta>
             <meta attribute="disable-user-insert">true</meta>
             <meta attribute="disable-user-update">true</meta>
@@ -43,19 +43,24 @@
 
         <many-to-one name="owner" class="org.web4thejob.security.UserIdentity"
                      fetch="select" not-null="true">
-            <meta attribute="friendlyName">Owner</meta>
+            <meta attribute="friendlyName">Ιδιοκτήτης</meta>
             <meta attribute="index">5</meta>
             <column name="`OWNER_ID`" not-null="true"/>
         </many-to-one>
 
         <one-to-one name="notes" class="org.web4thejob.tjoblet.orm.ContentNotes" fetch="select" cascade="all">
-            <meta attribute="friendlyName">Notes</meta>
+            <meta attribute="friendlyName">Απαντήσεις</meta>
             <meta attribute="orderno">6</meta>
+        </one-to-one>
+
+        <one-to-one name="comments" class="org.web4thejob.tjoblet.orm.ContentComments" fetch="select" cascade="all">
+            <meta attribute="friendlyName">Σχόλια</meta>
+            <meta attribute="orderno">7</meta>
         </one-to-one>
 
         <set name="parents" table="`CONTENT_HIERARCHY`" schema="web4t" inverse="true" lazy="true" fetch="select"
              cascade="delete">
-            <meta attribute="friendlyName">Parents</meta>
+            <meta attribute="friendlyName">Γονείς</meta>
             <key>
                 <column name="`CHILD_ID`" not-null="false"/>
             </key>

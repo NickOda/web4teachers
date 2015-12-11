@@ -33,6 +33,22 @@
             <groupId>org.web4thejob</groupId>
             <artifactId>org.web4thejob.web.zk7</artifactId>
             <version>${org.web4thejob.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.web4thejob</groupId>
+                    <artifactId>org.web4thejob.web.ckeb</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.web4thejob</groupId>
+            <artifactId>org.web4thejob.web.fmath</artifactId>
+            <version>3.6.0</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.web4thejob</groupId>
+            <artifactId>org.web4thejob.web.nick</artifactId>
+            <version>3.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.web4thejob</groupId>
@@ -75,6 +91,7 @@
                     </connectors>
                     <stopKey>my-stop-key</stopKey>
                     <stopPort>8181</stopPort>
+                    <contextPath>/</contextPath>
                 </configuration>
             </plugin>
         </plugins>

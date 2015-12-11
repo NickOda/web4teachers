@@ -7,7 +7,7 @@
     <class name="org.web4thejob.tjoblet.orm.DocumentType"
            schema="web4t"
            table="`DOCUMENT_TYPE`">
-        <meta attribute="friendlyName">Document Type</meta>
+        <meta attribute="friendlyName">Τύπος Αρχείου</meta>
 
         <cache usage="nonstrict-read-write"/>
 
@@ -20,14 +20,14 @@
 
         <natural-id mutable="true">
             <property name="name" type="string">
-                <meta attribute="friendlyName">Name</meta>
+                <meta attribute="friendlyName">Όνομα</meta>
                 <meta attribute="index">2</meta>
                 <column name="`NAME`" length="255" not-null="true"/>
             </property>
         </natural-id>
 
         <set name="documents" table="`DOCUMENT`" schema="web4t" inverse="true" lazy="true" fetch="select">
-            <meta attribute="friendlyName">Documents</meta>
+            <meta attribute="friendlyName">Αρχεία</meta>
             <key>
                 <column name="`DOC_TYPE_ID`" not-null="false"/>
             </key>

@@ -41,6 +41,7 @@ public class Document extends Content {
     @NotBlank
     @HtmlHolder
     private String body;
+    private String source;
     private Set<DocAttachment> attachments = new HashSet<>();
 
     public Document() {
@@ -69,6 +70,14 @@ public class Document extends Content {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public Category getCategory() {

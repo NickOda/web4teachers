@@ -9,6 +9,7 @@ import org.web4thejob.tjoblet.orm.Content;
  * @since 1.0.0
  */
 public class BinderServlet extends AbstractHierarchyServlet {
+
     @Override
     protected Entity getEntity(long docId) {
         return ContextUtil.getDRS().findById(Content.class, docId);

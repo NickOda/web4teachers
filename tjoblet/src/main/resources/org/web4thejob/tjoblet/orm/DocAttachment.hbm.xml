@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
     <class name="org.web4thejob.tjoblet.orm.DocAttachment" table="DOC_ATTACHMENT" schema="web4t">
-        <meta attribute="friendlyName">Document Attachment</meta>
+        <meta attribute="friendlyName">Επισυναπτόμενο</meta>
 
         <id name="id" type="long">
             <meta attribute="friendlyName">ID</meta>
@@ -15,26 +15,26 @@
         </id>
 
         <property name="title" type="string">
-            <meta attribute="friendlyName">Title</meta>
+            <meta attribute="friendlyName">Τίτλος</meta>
             <meta attribute="index">2</meta>
             <column name="`TITLE`" length="255" not-null="true"/>
         </property>
 
         <many-to-one name="document" class="org.web4thejob.tjoblet.orm.Document"
                      fetch="select" not-null="true">
-            <meta attribute="friendlyName">Document</meta>
+            <meta attribute="friendlyName">Αρχείο</meta>
             <meta attribute="index">3</meta>
             <column name="`DOC_ID`" not-null="true"/>
         </many-to-one>
 
         <property name="attachment" type="materialized_blob">
-            <meta attribute="friendlyName">Attachment</meta>
+            <meta attribute="friendlyName">Επισυναπτόμενο</meta>
             <meta attribute="orderno">4</meta>
             <column name="ATTACHMENT" length="10000000" not-null="true"/>
         </property>
 
         <property name="url" type="string">
-            <meta attribute="friendlyName">Link</meta>
+            <meta attribute="friendlyName">Σύνδεσμος</meta>
             <meta attribute="orderno">5</meta>
             <formula>`ID`</formula>
         </property>

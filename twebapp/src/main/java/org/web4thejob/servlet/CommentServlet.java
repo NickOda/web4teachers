@@ -17,7 +17,7 @@ public class CommentServlet extends AbstractServlet {
 
     @Override
     protected String getTitle(Entity entity) {
-        return ((ContentComments) entity).getContent().getName();
+        return "Σχόλιο";
     }
 
     @Override

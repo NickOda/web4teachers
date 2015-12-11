@@ -77,4 +77,27 @@ public class MappingTest extends AbstractORMTest {
 
     }
 
+    @Test
+    public void test3() {
+        Binder binder = new Binder();
+        binder.setName("MyB3");
+        ContextUtil.getDWS().save(binder);
+
+        Category category3 = new Category();
+        category3.setName("C3");
+        ContextUtil.getDWS().save(category3);
+
+        Document doc = new Document();
+        doc.setName("lala");
+        doc.setCategory(category3);
+        doc.setBody("123");
+        doc.setSource("thatbook");
+        ContextUtil.getDWS().save(doc);
+
+        Document c1 = ContextUtil.getDRS().findById(Document.class, doc.getId());
+        Assert.assertEquals(doc.getSource(), c1.getSource());
+
+
+    }
+
 }

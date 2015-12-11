@@ -8,40 +8,46 @@
                      schema="web4t"
                      table="`DOCUMENT`"
                      extends="org.web4thejob.tjoblet.orm.Content">
-        <meta attribute="friendlyName">Document</meta>
+        <meta attribute="friendlyName">Εκφώνηση</meta>
 
         <key column="`ID`"/>
 
         <many-to-one name="category" class="org.web4thejob.tjoblet.orm.Category"
                      fetch="select" not-null="true">
-            <meta attribute="friendlyName">Category</meta>
+            <meta attribute="friendlyName">Κατηγορία</meta>
             <meta attribute="index">3</meta>
             <column name="`CATEGORY_ID`" not-null="true"/>
         </many-to-one>
 
         <property name="referenceDate" type="date">
-            <meta attribute="friendlyName">Reference Date</meta>
+            <meta attribute="friendlyName">Ημερομηνία Εισαγωγής</meta>
             <meta attribute="index">4</meta>
             <column name="`REFERENCE_DATE`"/>
         </property>
 
         <many-to-one name="type" class="org.web4thejob.tjoblet.orm.DocumentType"
                      fetch="select" not-null="true">
-            <meta attribute="friendlyName">Type</meta>
+            <meta attribute="friendlyName">Τύπος</meta>
             <meta attribute="index">5</meta>
             <column name="`DOC_TYPE_ID`" not-null="false"/>
         </many-to-one>
 
 
         <property name="body" type="materialized_clob">
-            <meta attribute="friendlyName">Body</meta>
+            <meta attribute="friendlyName">Σώμα</meta>
             <meta attribute="index">6</meta>
             <column name="`BODY`" length="5000000" not-null="true"/>
         </property>
 
+        <property name="source" type="materialized_clob">
+            <meta attribute="friendlyName">Πηγή</meta>
+            <meta attribute="index">7</meta>
+            <column name="`SOURCE`" length="5000000" not-null="true"/>
+        </property>
+
         <set name="attachments" table="`DOC_ATTACHMENT`" schema="web4t" inverse="true" lazy="true" fetch="select"
              cascade="delete">
-            <meta attribute="friendlyName">Attachments</meta>
+            <meta attribute="friendlyName">Επισυναπτόμενα</meta>
             <key>
                 <column name="`DOC_ID`" not-null="false"/>
             </key>

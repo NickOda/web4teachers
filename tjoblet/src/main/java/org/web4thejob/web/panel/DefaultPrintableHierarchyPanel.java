@@ -11,6 +11,7 @@ import org.web4thejob.message.MessageEnum;
 import org.web4thejob.orm.Entity;
 import org.web4thejob.web.util.ZkUtil;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +25,10 @@ import java.util.Set;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 public class DefaultPrintableHierarchyPanel extends DefaultEntityHierarchyPanel implements PrintableHierarchyPanel {
+
+
+    private String link;
+    private Serializable id;
 
     @Override
     public Set<CommandEnum> getSupportedCommands() {
@@ -42,18 +47,40 @@ public class DefaultPrintableHierarchyPanel extends DefaultEntityHierarchyPanel 
 
     @Override
     public void dispatchMessage(Message message) {
+
+
         if (message.getId().equals(MessageEnum.ENTITY_SELECTED)) {
             Command command = getCommand(CommandEnum.PRINT);
+
+
             if (command != null) {
                 List<ToolbarbuttonCommandDecorator> decorators = ZkUtil.getCommandDecorators(command,
                         ToolbarbuttonCommandDecorator.class);
                 for (ToolbarbuttonCommandDecorator button : decorators) {
-                    button.setHref("book?id=" + message.getArg(MessageArgEnum.ARG_ITEM,
-                            Entity.class).getIdentifierValue());
-                    button.setTarget("_blank");
+                    //param.show(button);
+                    //  if (param.isOKready() && param.docButton.isChecked() ) {
+//                      button.setHref("book?id=" + message.getArg(MessageArgEnum.ARG_ITEM,
+//                              Entity.class).getIdentifierValue());
+//                       button.setTarget("_blank");
+                    link = "book?id=" + message.getArg(MessageArgEnum.ARG_ITEM,
+                            Entity.class).getIdentifierValue();
+                    id = message.getArg(MessageArgEnum.ARG_ITEM,
+                            Entity.class).getIdentifierValue();
+                    // }
                 }
+
             }
+            super.dispatchMessage(message);
         }
-        super.dispatchMessage(message);
+    }
+
+    @Override
+    protected void processValidCommand(Command command) {
+        if (CommandEnum.PRINT.equals(command.getId())) {
+            PrintParameter param = new PrintParameter(id, link);
+            param.show(command);
+        } else {
+            super.processValidCommand(command);
+        }
     }
 }

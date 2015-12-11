@@ -27,6 +27,7 @@ public abstract class Content extends AbstractHibernateEntity implements EntityH
     private UserIdentity owner;
 
     private ContentNotes notes;
+    private ContentComments comments;
     private Set<ContentHierarchy> parents = new HashSet<ContentHierarchy>();
 
     public String getName() {
@@ -98,6 +99,14 @@ public abstract class Content extends AbstractHibernateEntity implements EntityH
 
     public void setNotes(ContentNotes notes) {
         this.notes = notes;
+    }
+
+    public ContentComments getComments() {
+        return comments;
+    }
+
+    public void setComments(ContentComments comments) {
+        this.comments = comments;
     }
 
 

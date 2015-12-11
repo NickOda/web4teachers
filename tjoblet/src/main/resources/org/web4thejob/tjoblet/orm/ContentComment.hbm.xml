@@ -2,8 +2,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.web4thejob.tjoblet.orm.ContentComments" schema="web4t" table="`CONTENT_COMMENTS`">
-        <meta attribute="friendlyName">Content Comments</meta>
+    <class name="org.web4thejob.tjoblet.orm.ContentComments" schema="web4t" table="`CONTENT_COMMENT`">
+        <meta attribute="friendlyName">Σχόλια</meta>
 
         <id name="id" type="long">
             <meta attribute="friendlyName">Id</meta>
@@ -17,18 +17,18 @@
         </id>
 
         <one-to-one name="content" class="org.web4thejob.tjoblet.orm.Content" constrained="false">
-            <meta attribute="friendlyName">Content</meta>
+            <meta attribute="friendlyName">Περιεχόμενο</meta>
             <meta attribute="index">2</meta>
         </one-to-one>
 
         <property name="comments" type="materialized_clob">
-            <meta attribute="friendlyName">Comments</meta>
+            <meta attribute="friendlyName">Σχόλια</meta>
             <meta attribute="index">3</meta>
             <column name="`COMMENTS`" length="5000000" not-null="true"/>
         </property>
 
         <property name="bookDate" type="timestamp" update="false">
-            <meta attribute="friendlyName">Book Date</meta>
+            <meta attribute="friendlyName">Ημερομηνία Εισαγωγής</meta>
             <meta attribute="index">4</meta>
             <meta attribute="disable-user-insert">true</meta>
             <meta attribute="disable-user-update">true</meta>
@@ -36,7 +36,7 @@
         </property>
 
         <property name="updateDate" type="timestamp" insert="false">
-            <meta attribute="friendlyName">Update Date</meta>
+            <meta attribute="friendlyName">Ημερομηνία Ενημέρωσης</meta>
             <meta attribute="index">5</meta>
             <meta attribute="disable-user-insert">true</meta>
             <meta attribute="disable-user-update">true</meta>

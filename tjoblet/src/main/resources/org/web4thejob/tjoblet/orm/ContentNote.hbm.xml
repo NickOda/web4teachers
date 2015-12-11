@@ -3,10 +3,10 @@
 
 <hibernate-mapping>
     <class name="org.web4thejob.tjoblet.orm.ContentNotes" schema="web4t" table="`CONTENT_NOTE`">
-        <meta attribute="friendlyName">Content Notes</meta>
+        <meta attribute="friendlyName">Απαντήσεις</meta>
 
         <id name="id" type="long">
-            <meta attribute="friendlyName">Id</meta>
+            <meta attribute="friendlyName">ID</meta>
             <meta attribute="index">1</meta>
             <meta attribute="disable-user-insert">true</meta>
             <meta attribute="disable-user-update">true</meta>
@@ -17,18 +17,18 @@
         </id>
 
         <one-to-one name="content" class="org.web4thejob.tjoblet.orm.Content" constrained="false">
-            <meta attribute="friendlyName">Content</meta>
+            <meta attribute="friendlyName">Περιεχόμενο</meta>
             <meta attribute="index">2</meta>
         </one-to-one>
 
         <property name="notes" type="materialized_clob">
-            <meta attribute="friendlyName">Notes</meta>
+            <meta attribute="friendlyName">Απαντησεις</meta>
             <meta attribute="index">3</meta>
             <column name="`NOTES`" length="5000000" not-null="true"/>
         </property>
 
         <property name="bookDate" type="timestamp" update="false">
-            <meta attribute="friendlyName">Book Date</meta>
+            <meta attribute="friendlyName">Ημερομηνία Εισαγωγής</meta>
             <meta attribute="index">4</meta>
             <meta attribute="disable-user-insert">true</meta>
             <meta attribute="disable-user-update">true</meta>
@@ -36,7 +36,7 @@
         </property>
 
         <property name="updateDate" type="timestamp" insert="false">
-            <meta attribute="friendlyName">Update Date</meta>
+            <meta attribute="friendlyName">Ημερομηνία Ενημέρωσης</meta>
             <meta attribute="index">5</meta>
             <meta attribute="disable-user-insert">true</meta>
             <meta attribute="disable-user-update">true</meta>

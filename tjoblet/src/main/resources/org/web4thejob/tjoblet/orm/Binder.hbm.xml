@@ -8,13 +8,13 @@
                      schema="web4t"
                      table="`BINDER`"
                      extends="org.web4thejob.tjoblet.orm.Content">
-        <meta attribute="friendlyName">Binder</meta>
+        <meta attribute="friendlyName">Συλλογή</meta>
 
         <key column="`ID`"/>
 
         <set name="children" table="`CONTENT_HIERARCHY`" schema="web4t" inverse="true" lazy="true" fetch="select"
              order-by="SORTING">
-            <meta attribute="friendlyName">Children</meta>
+            <meta attribute="friendlyName">Παιδιά</meta>
             <key>
                 <column name="`PARENT_ID`" not-null="false"/>
             </key>
