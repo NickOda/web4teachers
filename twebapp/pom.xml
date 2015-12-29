@@ -48,6 +48,9 @@
         <dependency>
             <groupId>org.web4thejob</groupId>
             <artifactId>org.web4thejob.web.nick</artifactId>
+            <type>jar</type>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/org.web4thejob.web.nick.jar</systemPath>
             <version>3.6.0</version>
         </dependency>
         <dependency>
@@ -74,27 +77,31 @@
         </dependency>
     </dependencies>
 
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.26</version>
-                <configuration>
-                    <useTestClasspath>false</useTestClasspath>
-                    <connectors>
-                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>8080</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
-                    <stopKey>my-stop-key</stopKey>
-                    <stopPort>8181</stopPort>
-                    <contextPath>/</contextPath>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <profiles>
+        <profile>
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>maven-jetty-plugin</artifactId>
+                        <version>6.1.26</version>
+                        <configuration>
+                            <useTestClasspath>false</useTestClasspath>
+                            <connectors>
+                                <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                                    <port>8080</port>
+                                    <maxIdleTime>60000</maxIdleTime>
+                                </connector>
+                            </connectors>
+                            <stopKey>my-stop-key</stopKey>
+                            <stopPort>8181</stopPort>
+                            <contextPath>/</contextPath>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
