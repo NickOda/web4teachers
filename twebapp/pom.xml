@@ -48,9 +48,8 @@
         <dependency>
             <groupId>org.web4thejob</groupId>
             <artifactId>org.web4thejob.web.nick</artifactId>
-            <type>jar</type>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/org.web4thejob.web.nick.jar</systemPath>
+            <systemPath>${basedir}/org.web4thejob.web.nick.jar</systemPath>
             <version>3.6.0</version>
         </dependency>
         <dependency>
